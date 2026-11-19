@@ -1,0 +1,538 @@
+{
+  "site": "https://crawlcove.github.io/seo-test-site/",
+  "generated": "2026-11-19",
+  "issues": [
+    {
+      "id": "TS-01",
+      "area": "Titles",
+      "planted": "Two different products share the title \"Sea Glass Candle | Harbour Lights\".",
+      "expect": "Duplicate title on both URLs.",
+      "check": "duplicate-title",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/products/sea-glass.html",
+        "https://crawlcove.github.io/seo-test-site/products/sea-glass-large.html"
+      ]
+    },
+    {
+      "id": "TS-02",
+      "area": "Titles",
+      "planted": "No <title> element at all.",
+      "expect": "Missing title.",
+      "check": "title",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/products/salt-marsh.html"
+      ]
+    },
+    {
+      "id": "TS-03",
+      "area": "Titles",
+      "planted": "A 140-character title.",
+      "expect": "Title too long (truncated in results).",
+      "check": "title-length",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/products/driftwood-and-amber.html"
+      ]
+    },
+    {
+      "id": "TS-04",
+      "area": "Titles",
+      "planted": "Two <title> elements with different text.",
+      "expect": "Multiple title tags.",
+      "check": "multiple-title-tags",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/products/pillar-candles.html"
+      ]
+    },
+    {
+      "id": "TS-05",
+      "area": "Titles",
+      "planted": "The title and the H1 are the same string, with no brand or qualifier.",
+      "expect": "Title identical to H1.",
+      "check": "title-equals-h1",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/blog/title-same-as-h1.html"
+      ]
+    },
+    {
+      "id": "TS-06",
+      "area": "Meta descriptions",
+      "planted": "Two products share one boilerplate meta description.",
+      "expect": "Duplicate meta description on both URLs.",
+      "check": "duplicate-meta-description",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/products/storm-lantern.html",
+        "https://crawlcove.github.io/seo-test-site/products/fog-bell.html"
+      ]
+    },
+    {
+      "id": "TS-07",
+      "area": "Meta descriptions",
+      "planted": "No meta description.",
+      "expect": "Missing meta description.",
+      "check": "meta-description",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/products/lighthouse-keeper.html"
+      ]
+    },
+    {
+      "id": "TS-08",
+      "area": "Headings",
+      "planted": "No H1; the product name is an H2.",
+      "expect": "Missing H1.",
+      "check": "heading-h1",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/products/gift-box.html"
+      ]
+    },
+    {
+      "id": "TS-09",
+      "area": "Headings",
+      "planted": "Two H1 elements.",
+      "expect": "More than one H1.",
+      "check": "heading-h1",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/blog/two-headlines.html"
+      ]
+    },
+    {
+      "id": "TS-10",
+      "area": "Headings",
+      "planted": "Two different articles share the H1 \"Choosing a candle wax\".",
+      "expect": "Duplicate H1 on both URLs.",
+      "check": "duplicate-h1",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/blog/wax-blends.html",
+        "https://crawlcove.github.io/seo-test-site/blog/soy-vs-paraffin.html"
+      ]
+    },
+    {
+      "id": "TS-11",
+      "area": "Headings",
+      "planted": "H1 is followed directly by H4s (no H2 or H3).",
+      "expect": "Skipped heading level.",
+      "check": "heading-order",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/blog/heading-skip.html"
+      ]
+    },
+    {
+      "id": "TS-12",
+      "area": "Indexing",
+      "planted": "meta robots noindex on a page that is linked from the shop and listed in sitemap.xml.",
+      "expect": "Noindex page; noindex URL in the sitemap.",
+      "check": "robots-noindex, sitemap-non-indexable-url",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/products/archive-sale.html"
+      ]
+    },
+    {
+      "id": "TS-13",
+      "area": "Indexing",
+      "planted": "meta robots \"index, nofollow\".",
+      "expect": "Page tells crawlers not to follow its links.",
+      "check": "robots-nofollow",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/blog/nofollow-page.html"
+      ]
+    },
+    {
+      "id": "TS-14",
+      "area": "Canonicals",
+      "planted": "Canonical points to blog/first-burn-guide.html, which answers 404.",
+      "expect": "Canonical target is broken (4xx).",
+      "check": "canonical",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/blog/old-guide.html"
+      ]
+    },
+    {
+      "id": "TS-15",
+      "area": "Canonicals",
+      "planted": "Canonical points to products/archive-sale.html, which is noindex.",
+      "expect": "Canonical points at a noindex page.",
+      "check": "canonical-to-noindex",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/blog/winter-guide.html"
+      ]
+    },
+    {
+      "id": "TS-16",
+      "area": "Canonicals",
+      "planted": "Canonical is .../seo-test-site/blog with no trailing slash, which GitHub Pages answers with a 301 to /blog/.",
+      "expect": "Canonical points at a redirect.",
+      "check": "canonical-to-redirect",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/blog/care-tips.html"
+      ]
+    },
+    {
+      "id": "TS-17",
+      "area": "Canonicals",
+      "planted": "Canonical uses http:// on an https site.",
+      "expect": "Insecure (http) canonical.",
+      "check": "insecure-canonical",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/blog/http-canonical.html"
+      ]
+    },
+    {
+      "id": "TS-18",
+      "area": "Canonicals",
+      "planted": "Two canonical tags pointing to different URLs.",
+      "expect": "Multiple canonical tags.",
+      "check": "multiple-canonical-tags",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/products/tea-lights.html"
+      ]
+    },
+    {
+      "id": "TS-19",
+      "area": "Broken resources",
+      "planted": "Link to products/discontinued-tins.html, which does not exist.",
+      "expect": "Broken internal link (404).",
+      "check": "broken-internal-link",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/blog/broken-links.html"
+      ]
+    },
+    {
+      "id": "TS-20",
+      "area": "Broken resources",
+      "planted": "Image img/supplier-map.png does not exist.",
+      "expect": "Broken image (404).",
+      "check": "broken-image",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/blog/broken-links.html"
+      ]
+    },
+    {
+      "id": "TS-21",
+      "area": "Broken resources",
+      "planted": "Stylesheet css/old-theme.css does not exist.",
+      "expect": "Broken stylesheet (404).",
+      "check": "broken-script-or-stylesheet",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/blog/broken-links.html"
+      ]
+    },
+    {
+      "id": "TS-22",
+      "area": "Broken resources",
+      "planted": "External link to https://crawlcove.com/seo-test-site-supplier-directory, which answers 404.",
+      "expect": "Broken external link.",
+      "check": "broken-external-link",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/blog/broken-links.html"
+      ]
+    },
+    {
+      "id": "TS-23",
+      "area": "Images",
+      "planted": "img/melting-pots.png has no alt attribute.",
+      "expect": "Image missing alt text.",
+      "check": "image-alt",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/blog/image-problems.html"
+      ]
+    },
+    {
+      "id": "TS-24",
+      "area": "Images",
+      "planted": "img/curing-shelves.png has alt=\"image\".",
+      "expect": "Generic, meaningless alt text.",
+      "check": "image-alt-generic",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/blog/image-problems.html"
+      ]
+    },
+    {
+      "id": "TS-25",
+      "area": "Images",
+      "planted": "img/packing-table.png has no width or height.",
+      "expect": "Image without dimensions (layout shift).",
+      "check": "image-missing-dimensions",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/blog/image-problems.html"
+      ]
+    },
+    {
+      "id": "TS-26",
+      "area": "Images",
+      "planted": "The first image on the page (likely the LCP image) has loading=\"lazy\".",
+      "expect": "Lazy-loaded first image.",
+      "check": "lazy-loaded-first-image",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/blog/image-problems.html"
+      ]
+    },
+    {
+      "id": "TS-27",
+      "area": "Images",
+      "planted": "img/harbour-panorama.png is an uncompressed PNG over 500 KB shown at 900x300.",
+      "expect": "Oversized image file.",
+      "check": "image-oversized",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/blog/image-problems.html"
+      ]
+    },
+    {
+      "id": "TS-28",
+      "area": "Security",
+      "planted": "An image loaded over http:// on an https page.",
+      "expect": "Mixed content.",
+      "check": "mixed-content",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/blog/mixed-content.html"
+      ]
+    },
+    {
+      "id": "TS-29",
+      "area": "Links",
+      "planted": "Anchor text \"click here\" and \"read more\".",
+      "expect": "Non-descriptive anchor text.",
+      "check": "non-descriptive-anchor-text",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/blog/link-problems.html"
+      ]
+    },
+    {
+      "id": "TS-30",
+      "area": "Links",
+      "planted": "rel=\"nofollow\" on a link to our own wick guide.",
+      "expect": "Nofollowed internal link.",
+      "check": "nofollow-internal-link",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/blog/link-problems.html"
+      ]
+    },
+    {
+      "id": "TS-31",
+      "area": "Links",
+      "planted": "An icon-only link (an svg with aria-hidden) with no text or label.",
+      "expect": "Link with no accessible name.",
+      "check": "link-no-name",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/blog/link-problems.html"
+      ]
+    },
+    {
+      "id": "TS-32",
+      "area": "Links",
+      "planted": "href=\"htps//www.gov.uk/fire-safety\" (misspelt scheme, missing colon).",
+      "expect": "Malformed link.",
+      "check": "malformed-links",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/blog/link-problems.html"
+      ]
+    },
+    {
+      "id": "TS-33",
+      "area": "Links",
+      "planted": "Internal link to /seo-test-site/blog without the trailing slash, which 301s.",
+      "expect": "Internal link to a redirect.",
+      "check": "internal-link-to-redirect",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/blog/link-problems.html"
+      ]
+    },
+    {
+      "id": "TS-34",
+      "area": "Site structure",
+      "planted": "Listed in sitemap.xml, linked from no page.",
+      "expect": "Orphan page.",
+      "check": "orphan-page",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/products/hidden-reserve.html"
+      ]
+    },
+    {
+      "id": "TS-35",
+      "area": "Site structure",
+      "planted": "Linked from the shop but missing from sitemap.xml.",
+      "expect": "Indexable page not in the sitemap.",
+      "check": "page-missing-from-sitemap",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/products/new-arrival.html"
+      ]
+    },
+    {
+      "id": "TS-36",
+      "area": "Site structure",
+      "planted": "sitemap.xml lists a URL that answers 404.",
+      "expect": "Sitemap lists a broken URL.",
+      "check": "sitemap-non-indexable-url",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/products/sold-out.html"
+      ]
+    },
+    {
+      "id": "TS-37",
+      "area": "Site structure",
+      "planted": "Five clicks from the home page (home, archive, 2025, autumn, week 40, page).",
+      "expect": "Excessive crawl depth.",
+      "check": "excessive-crawl-depth",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/archive/2025/autumn/week-40/maple-and-smoke.html"
+      ]
+    },
+    {
+      "id": "TS-38",
+      "area": "Site structure",
+      "planted": "No links out of the page at all, no navigation either.",
+      "expect": "Dead-end page.",
+      "check": "dead-end-page",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/archive/2025/autumn/week-40/maple-and-smoke.html"
+      ]
+    },
+    {
+      "id": "TS-39",
+      "area": "Site structure",
+      "planted": "Six sort and filter links create query-string variants of the shop page (each canonicalises back to /shop/).",
+      "expect": "Parameter URLs (low).",
+      "check": "parameter-url-explosion",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/shop/"
+      ]
+    },
+    {
+      "id": "TS-40",
+      "area": "URLs",
+      "planted": "Capital letters and underscores in the URL.",
+      "expect": "Inconsistent URL format.",
+      "check": "url-consistency",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/products/Gift_Set_LARGE.html"
+      ]
+    },
+    {
+      "id": "TS-41",
+      "area": "Content",
+      "planted": "About 40 words of body copy.",
+      "expect": "Thin content.",
+      "check": "thin-content",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/blog/thin-note.html"
+      ]
+    },
+    {
+      "id": "TS-42",
+      "area": "Content",
+      "planted": "Two articles whose body differs only in the first sentence.",
+      "expect": "Near-duplicate content on both URLs.",
+      "check": "near-duplicate-content",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/blog/rainy-day-candles.html",
+        "https://crawlcove.github.io/seo-test-site/blog/rainy-day-candles-2.html"
+      ]
+    },
+    {
+      "id": "TS-43",
+      "area": "Content",
+      "planted": "All body copy is written into the page by JavaScript; the HTML has none.",
+      "expect": "Content depends on JavaScript (needs a rendering crawl to see it).",
+      "check": "content-depends-on-js",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/blog/js-only.html"
+      ]
+    },
+    {
+      "id": "TS-44",
+      "area": "Redirects",
+      "planted": "<meta http-equiv=\"refresh\" content=\"0; url=...\"> to the wick guide.",
+      "expect": "Meta refresh redirect.",
+      "check": null,
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/blog/moved.html"
+      ]
+    },
+    {
+      "id": "TS-45",
+      "area": "Mobile",
+      "planted": "No viewport meta tag.",
+      "expect": "Missing viewport.",
+      "check": "viewport-missing",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/about/team.html"
+      ]
+    },
+    {
+      "id": "TS-46",
+      "area": "Mobile",
+      "planted": "Viewport sets maximum-scale=1, user-scalable=no.",
+      "expect": "Viewport blocks zoom.",
+      "check": "viewport-blocks-zoom",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/about/history.html"
+      ]
+    },
+    {
+      "id": "TS-47",
+      "area": "Language",
+      "planted": "<html> has no lang attribute.",
+      "expect": "Missing html lang.",
+      "check": "html-lang",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/about/team.html"
+      ]
+    },
+    {
+      "id": "TS-48",
+      "area": "International",
+      "planted": "The English page lists the French one as an alternate; the French page does not link back.",
+      "expect": "hreflang missing return link.",
+      "check": "hreflang",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/intl/en/",
+        "https://crawlcove.github.io/seo-test-site/intl/fr/"
+      ]
+    },
+    {
+      "id": "TS-49",
+      "area": "International",
+      "planted": "hreflang=\"en-UK\" (the region code for the United Kingdom is GB).",
+      "expect": "Invalid hreflang code.",
+      "check": "hreflang",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/intl/de/"
+      ]
+    },
+    {
+      "id": "TS-50",
+      "area": "Structured data",
+      "planted": "One JSON-LD block has a trailing comma (invalid JSON); a second Product block has no name.",
+      "expect": "Unparseable JSON-LD; Product missing a required property.",
+      "check": "schema-validity",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/products/ember.html"
+      ]
+    },
+    {
+      "id": "TS-51",
+      "area": "Social",
+      "planted": "No Open Graph or Twitter Card tags.",
+      "expect": "Missing social meta.",
+      "check": "social-meta",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/blog/no-social.html"
+      ]
+    },
+    {
+      "id": "TS-52",
+      "area": "Local",
+      "planted": "A street address with a UK postcode and phone number in the main content; no LocalBusiness markup anywhere.",
+      "expect": "Local business markup missing.",
+      "check": "local-business-markup-missing",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/contact/"
+      ]
+    }
+  ],
+  "controls": [
+    "https://crawlcove.github.io/seo-test-site/",
+    "https://crawlcove.github.io/seo-test-site/products/tide-pool.html",
+    "https://crawlcove.github.io/seo-test-site/blog/",
+    "https://crawlcove.github.io/seo-test-site/blog/choosing-a-wick.html",
+    "https://crawlcove.github.io/seo-test-site/about/"
+  ]
+}
