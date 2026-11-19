@@ -51,9 +51,9 @@ Some pages trigger a second, expected finding as a side effect (for example the 
 
 | ID | URL | What is planted | A crawler should report | Crawl Cove check |
 |---|---|---|---|---|
-| TS-14 | [blog/old-guide.html](https://crawlcove.github.io/seo-test-site/blog/old-guide.html) | Canonical points to blog/first-burn-guide.html, which answers 404. | Canonical target is broken (4xx). | `canonical` |
-| TS-15 | [blog/winter-guide.html](https://crawlcove.github.io/seo-test-site/blog/winter-guide.html) | Canonical points to products/archive-sale.html, which is noindex. | Canonical points at a noindex page. | `canonical-to-noindex` |
-| TS-16 | [blog/care-tips.html](https://crawlcove.github.io/seo-test-site/blog/care-tips.html) | Canonical is .../seo-test-site/blog with no trailing slash, which GitHub Pages answers with a 301 to /blog/. | Canonical points at a redirect. | `canonical-to-redirect` |
+| TS-14 | [blog/old-guide.html](https://crawlcove.github.io/seo-test-site/blog/old-guide.html) | Canonical points to blog/first-burn-guide.html, which answers 404. | Canonical target is broken (4xx). Also expected: `sitemap-non-indexable-url` (the sitemap lists a page whose canonical names another URL). | `canonical` |
+| TS-15 | [blog/winter-guide.html](https://crawlcove.github.io/seo-test-site/blog/winter-guide.html) | Canonical points to products/archive-sale.html, which is noindex. | Canonical points at a noindex page. Also expected: `sitemap-non-indexable-url` (the sitemap lists a page whose canonical names another URL). | `canonical-to-noindex` |
+| TS-16 | [blog/care-tips.html](https://crawlcove.github.io/seo-test-site/blog/care-tips.html) | Canonical is .../seo-test-site/blog with no trailing slash, which GitHub Pages answers with a 301 to /blog/. | Canonical points at a redirect. Also expected: `sitemap-non-indexable-url` (the sitemap lists a page whose canonical names another URL). | `canonical-to-redirect` |
 | TS-17 | [blog/http-canonical.html](https://crawlcove.github.io/seo-test-site/blog/http-canonical.html) | Canonical uses http:// on an https site. | Insecure (http) canonical. | `insecure-canonical` |
 | TS-18 | [products/tea-lights.html](https://crawlcove.github.io/seo-test-site/products/tea-lights.html) | Two canonical tags pointing to different URLs. | Multiple canonical tags. | `multiple-canonical-tags` |
 
@@ -90,7 +90,7 @@ Some pages trigger a second, expected finding as a side effect (for example the 
 | TS-30 | [blog/link-problems.html](https://crawlcove.github.io/seo-test-site/blog/link-problems.html) | rel=&quot;nofollow&quot; on the only link from this page to blog/care-tips.html. | Nofollowed internal link. | `nofollow-internal-link` |
 | TS-31 | [blog/link-problems.html](https://crawlcove.github.io/seo-test-site/blog/link-problems.html) | An icon-only link (an svg with aria-hidden) with no text or label. | Link with no accessible name. | `link-no-name` |
 | TS-32 | [blog/link-problems.html](https://crawlcove.github.io/seo-test-site/blog/link-problems.html) | href=&quot;https://www gov.uk/firekills&quot; (a space in the host name, so it is not a URL at all). | Malformed link. | `malformed-links` |
-| TS-53 | [blog/link-problems.html](https://crawlcove.github.io/seo-test-site/blog/link-problems.html) | href=&quot;htps//www.gov.uk/fire-safety&quot;: the misspelt scheme makes it a RELATIVE link, so it resolves to blog/htps//www.gov.uk/fire-safety on this site. | Broken link: that URL answers 404. | `status-code-404` |
+| TS-53 | [blog/link-problems.html](https://crawlcove.github.io/seo-test-site/blog/link-problems.html)<br>[blog/htps//www.gov.uk/fire-safety](https://crawlcove.github.io/seo-test-site/blog/htps//www.gov.uk/fire-safety) | href=&quot;htps//www.gov.uk/fire-safety&quot;: the misspelt scheme makes it a RELATIVE link, so it resolves to blog/htps//www.gov.uk/fire-safety on this site. | Broken link: that URL answers 404. | `status-code-404` |
 | TS-33 | [blog/link-problems.html](https://crawlcove.github.io/seo-test-site/blog/link-problems.html) | Internal link to /seo-test-site/blog without the trailing slash, which 301s. | Internal link to a redirect. | `internal-link-to-redirect` |
 
 ## Site structure

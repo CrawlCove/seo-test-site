@@ -123,10 +123,13 @@ function images() {
 }
 
 function sitemap() {
-  const urls = pages.filter((p) => p.sitemap !== false).map((p) => abs(p.path)).concat(extraSitemapUrls.map(abs))
+  // Spread lastmod over the year, deterministically, so the dates read as page edits
+  // rather than the moment the file was generated.
+  const day = (i) => new Date(Date.UTC(2026, 2, 1) + ((i * 37) % 250) * 86400000).toISOString().slice(0, 10)
+  const urls = pages.filter((p) => p.sitemap !== false).map((p) => abs(p.path)).concat(extraSitemapUrls.map(abs)).map((u, i) => [u, day(i)])
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.map((u) => `  <url><loc>${u}</loc><lastmod>${LASTMOD}</lastmod></url>`).join('\n')}
+${urls.map(([u, d]) => `  <url><loc>${u}</loc><lastmod>${d}</lastmod></url>`).join('\n')}
 </urlset>
 `
 }
@@ -204,7 +207,7 @@ images()
 writeFileSync(join(repo, 'ISSUES.md'), issuesDoc())
 writeFileSync(join(repo, 'issues.json'), JSON.stringify({ site: BASE, generated: LASTMOD, issues: issues.map((i) => ({ ...i, urls: i.pages.map(abs), pages: undefined })), controls: pages.filter((p) => p.control).map((p) => abs(p.path)) }, null, 2) + '\n')
 
-const known = new Set(pages.map((p) => p.path).concat(extraSitemapUrls, ['products/discontinued-tins.html', 'blog/first-burn-guide.html']))
+const known = new Set(pages.map((p) => p.path).concat(extraSitemapUrls, ['products/discontinued-tins.html', 'blog/first-burn-guide.html', 'blog/htps//www.gov.uk/fire-safety']))
 for (const i of issues) for (const p of i.pages) if (!known.has(p)) problems.push(`${i.id} names unknown page ${p}`)
 if (problems.length) {
   console.error(problems.join('\n'))
