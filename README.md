@@ -1,6 +1,6 @@
 # seo-test-site
 
-A deliberately broken **SEO test site** for testing SEO crawlers and site audit tools. It is a small, realistic candle shop (Harbour Lights, fictional) with **52 planted SEO problems**, each one listed in [ISSUES.md](ISSUES.md) with the URL, what is wrong and what a crawler should report. Point any crawler at it and score what it finds.
+A deliberately broken **SEO test site** for testing SEO crawlers and site audit tools. It is a small, realistic candle shop (Harbour Lights, fictional) with **54 planted SEO problems**, each one listed in [ISSUES.md](ISSUES.md) with the URL, what is wrong and what a crawler should report. Point any crawler at it and score what it finds.
 
 **Test URL:** https://crawlcove.github.io/seo-test-site/
 
@@ -22,8 +22,8 @@ curl -s https://raw.githubusercontent.com/CrawlCove/seo-test-site/main/issues.js
 | Indexing and canonicals | 7 | noindex page in the sitemap, canonical to a 404, to a noindex page, to a redirect, over http, two canonical tags |
 | Broken resources | 4 | internal 404 link, broken image, broken stylesheet, broken external link |
 | Images | 5 | no alt, `alt="image"`, no dimensions, lazy-loaded first image, an 800 KB PNG |
-| Links | 5 | "click here" anchors, nofollowed internal link, icon link with no name, malformed href, link to a redirect |
-| Site structure and URLs | 7 | orphan page, page missing from the sitemap, 404 in the sitemap, 5 clicks deep, dead end, parameter URLs, `Gift_Set_LARGE.html` |
+| Links | 6 | "click here" anchors, nofollowed internal link, icon link with no name, malformed href, misspelt scheme that 404s, link to a redirect |
+| Site structure and URLs | 8 | orphan page, page missing from the sitemap, 404 in the sitemap, robots-blocked URL in the sitemap, 5 clicks deep, dead end, parameter URLs, `Gift_Set_LARGE.html` |
 | Content | 3 | thin page, near-duplicate pair, body copy written by JavaScript |
 | Mobile, language, international | 5 | missing viewport, zoom blocked, no `lang`, hreflang without a return link, `hreflang="en-UK"` |
 | Structured data, social, local, redirects, security | 5 | invalid JSON-LD, Product with no name, no Open Graph, address with no LocalBusiness, meta refresh, mixed content |

@@ -148,7 +148,7 @@ function issuesDoc() {
   }
   const controls = pages.filter((p) => p.control).map((p) => `- ${abs(p.path)}`)
   const sections = [...byArea].map(([area, list]) => {
-    const rows = list.map((i) => `| ${i.id} | ${i.pages.map((p) => `[${p.replace(/index\.html$/, '')}](${abs(p)})`).join('<br>')} | ${esc(i.planted).replace(/\|/g, '\\|')} | ${i.expect} | ${i.check ? i.check.split(', ').map((c) => '`' + c + '`').join(', ') : 'none yet'} |`)
+    const rows = list.map((i) => `| ${i.id} | ${i.pages.map((p) => `[${p.replace(/index\.html$/, '')}](${abs(p)})`).join('<br>')} | ${esc(i.planted).replace(/\|/g, '\\|')} | ${i.expect}${i.alsoExpected ? ' Also expected: ' + i.alsoExpected.map((x) => x.replace(/^([a-z0-9-]+)/, '`$1`')).join('; ') + '.' : ''} | ${i.check ? i.check.split(', ').map((c) => '`' + c + '`').join(', ') : 'none yet'} |`)
     return `## ${area}\n\n| ID | URL | What is planted | A crawler should report | Crawl Cove check |\n|---|---|---|---|---|\n${rows.join('\n')}`
   })
   return `# ISSUES.md: every problem planted in the SEO test site
@@ -181,7 +181,7 @@ The site is static and hosted on GitHub Pages, so some problems cannot be plante
 
 - **Server redirects, redirect chains and loops.** Pages has no redirect rules. The only real 301 is its trailing-slash redirect (\`/blog\` to \`/blog/\`), used in TS-16 and TS-33.
 - **5xx errors, slow responses, 429 rate limits.** Every response comes from GitHub's CDN.
-- **robots.txt rules.** robots.txt must sit at the host root (crawlcove.github.io/robots.txt), outside this project's path, so none is planted, and the sitemap is not declared in one.
+- **Most robots.txt problems.** robots.txt is only read at the host root, so it lives in a separate repo, [CrawlCove/crawlcove.github.io](https://github.com/CrawlCove/crawlcove.github.io). It declares the sitemap and carries one deliberate Disallow (TS-54); a malformed robots.txt would break every other test, so none is planted.
 - **Soft 404s.** Pages returns a real 404 for any unknown URL.
 
 Suggestions for problems Pages *can* host are welcome as issues or pull requests.

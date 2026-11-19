@@ -70,6 +70,9 @@
       "planted": "No meta description.",
       "expect": "Missing meta description.",
       "check": "meta-description",
+      "alsoExpected": [
+        "social-meta (og:description is empty too)"
+      ],
       "urls": [
         "https://crawlcove.github.io/seo-test-site/products/lighthouse-keeper.html"
       ]
@@ -189,10 +192,11 @@
       "id": "TS-19",
       "area": "Broken resources",
       "planted": "Link to products/discontinued-tins.html, which does not exist.",
-      "expect": "Broken internal link (404).",
-      "check": "broken-internal-link",
+      "expect": "Broken internal link: the target answers 404.",
+      "check": "status-code-404",
       "urls": [
-        "https://crawlcove.github.io/seo-test-site/blog/broken-links.html"
+        "https://crawlcove.github.io/seo-test-site/blog/broken-links.html",
+        "https://crawlcove.github.io/seo-test-site/products/discontinued-tins.html"
       ]
     },
     {
@@ -209,7 +213,7 @@
       "id": "TS-21",
       "area": "Broken resources",
       "planted": "Stylesheet css/old-theme.css does not exist.",
-      "expect": "Broken stylesheet (404).",
+      "expect": "Broken stylesheet (404). Crawlers that do not render or fetch CSS will not see it.",
       "check": "broken-script-or-stylesheet",
       "urls": [
         "https://crawlcove.github.io/seo-test-site/blog/broken-links.html"
@@ -298,7 +302,7 @@
     {
       "id": "TS-30",
       "area": "Links",
-      "planted": "rel=\"nofollow\" on a link to our own wick guide.",
+      "planted": "rel=\"nofollow\" on the only link from this page to blog/care-tips.html.",
       "expect": "Nofollowed internal link.",
       "check": "nofollow-internal-link",
       "urls": [
@@ -318,9 +322,19 @@
     {
       "id": "TS-32",
       "area": "Links",
-      "planted": "href=\"htps//www.gov.uk/fire-safety\" (misspelt scheme, missing colon).",
+      "planted": "href=\"https://www gov.uk/firekills\" (a space in the host name, so it is not a URL at all).",
       "expect": "Malformed link.",
       "check": "malformed-links",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/blog/link-problems.html"
+      ]
+    },
+    {
+      "id": "TS-53",
+      "area": "Links",
+      "planted": "href=\"htps//www.gov.uk/fire-safety\": the misspelt scheme makes it a RELATIVE link, so it resolves to blog/htps//www.gov.uk/fire-safety on this site.",
+      "expect": "Broken link: that URL answers 404.",
+      "check": "status-code-404",
       "urls": [
         "https://crawlcove.github.io/seo-test-site/blog/link-problems.html"
       ]
@@ -366,6 +380,16 @@
       ]
     },
     {
+      "id": "TS-54",
+      "area": "Site structure",
+      "planted": "robots.txt (at the host root, crawlcove.github.io/robots.txt) disallows /seo-test-site/wholesale/, and sitemap.xml lists this page.",
+      "expect": "Sitemap lists a URL robots.txt blocks.",
+      "check": "sitemap-non-indexable-url",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/wholesale/price-list.html"
+      ]
+    },
+    {
       "id": "TS-37",
       "area": "Site structure",
       "planted": "Five clicks from the home page (home, archive, 2025, autumn, week 40, page).",
@@ -388,8 +412,8 @@
     {
       "id": "TS-39",
       "area": "Site structure",
-      "planted": "Six sort and filter links create query-string variants of the shop page (each canonicalises back to /shop/).",
-      "expect": "Parameter URLs (low).",
+      "planted": "Sort links and a colour by size filter grid create 26 query-string variants of the shop page (each canonicalises back to /shop/).",
+      "expect": "One path explodes into 25 or more parameter URLs.",
       "check": "parameter-url-explosion",
       "urls": [
         "https://crawlcove.github.io/seo-test-site/shop/"
@@ -432,6 +456,9 @@
       "planted": "All body copy is written into the page by JavaScript; the HTML has none.",
       "expect": "Content depends on JavaScript (needs a rendering crawl to see it).",
       "check": "content-depends-on-js",
+      "alsoExpected": [
+        "thin-content (a crawler that does not render sees an almost empty page)"
+      ],
       "urls": [
         "https://crawlcove.github.io/seo-test-site/blog/js-only.html"
       ]
@@ -442,6 +469,9 @@
       "planted": "<meta http-equiv=\"refresh\" content=\"0; url=...\"> to the wick guide.",
       "expect": "Meta refresh redirect.",
       "check": null,
+      "alsoExpected": [
+        "thin-content (the holding page is a single line)"
+      ],
       "urls": [
         "https://crawlcove.github.io/seo-test-site/blog/moved.html"
       ]

@@ -47,7 +47,7 @@ export const pages = [
   // ------------------------------------------------------------ shop hub
   {
     path: 'shop/index.html',
-    title: 'Shop Soy Candles, Tea Lights and Gift Boxes | Harbour Lights',
+    title: 'Shop Soy Candles and Gift Boxes | Harbour Lights',
     desc: 'Every Harbour Lights candle in one place: jar candles, tins, tea lights, gift boxes and wax refills, each poured to order in Bristol.',
     h1: 'Shop all candles',
     body:
@@ -82,7 +82,11 @@ export const pages = [
         `<a href="${ROOT}shop/?colour=blue">Blue candles</a>`,
         `<a href="${ROOT}shop/?colour=amber">Amber candles</a>`,
         `<a href="${ROOT}shop/?colour=blue&amp;sort=price">Blue candles by price</a>`,
-      ]),
+      ]) +
+      '\n<h2>Filter by colour and size</h2>\n' +
+      ['blue', 'amber', 'green', 'grey']
+        .map((c) => `<p>${c[0].toUpperCase() + c.slice(1)}: ` + ['tin', 'small-jar', 'jar', 'large-jar', 'three-wick'].map((z) => `<a href="${ROOT}shop/?colour=${c}&amp;size=${z}">${z.replace('-', ' ')}</a>`).join(', ') + '</p>')
+        .join('\n'),
   },
 
   {
@@ -195,7 +199,7 @@ export const pages = [
   // missing meta description
   {
     path: 'products/lighthouse-keeper.html',
-    title: 'Lighthouse Keeper Tobacco and Leather Candle | Harbour Lights',
+    title: 'Lighthouse Keeper Leather Candle | Harbour Lights',
     desc: null,
     h1: 'Lighthouse Keeper jar candle',
     body: p(
@@ -268,7 +272,7 @@ export const pages = [
   // inconsistent URL: capitals and underscores
   {
     path: 'products/Gift_Set_LARGE.html',
-    title: 'Large Candle Gift Set, Two Jars and Matches | Harbour Lights',
+    title: 'Large Candle Gift Set, Two Jars | Harbour Lights',
     desc: 'Two jar candles of your choice, a box of long safety matches and a wick trimmer in one large gift set.',
     h1: 'Large gift set',
     body: p(
@@ -315,7 +319,7 @@ export const pages = [
   // ------------------------------------------------------------ journal hub
   {
     path: 'blog/index.html',
-    title: 'Candle Care Journal: Wicks, Wax and Burning Tips | Harbour Lights',
+    title: 'Candle Care Journal: Wicks and Wax | Harbour Lights',
     desc: 'Practical candle care from the Harbour Lights studio: choosing wicks, the first burn, tunnelling, soot and how to store candles.',
     h1: 'The candle care journal',
     control: true,
@@ -346,7 +350,7 @@ export const pages = [
         a('blog/moved.html', 'Wick guide (moved)'),
         a('blog/nofollow-page.html', 'Customer photos'),
         a('blog/js-only.html', 'Burn time calculator'),
-        a('blog/title-same-as-h1.html', 'Candle Making Workshop'),
+        a('blog/title-same-as-h1.html', 'Candle making workshops'),
       ]),
   },
 
@@ -397,7 +401,7 @@ export const pages = [
   // two pages share one H1
   {
     path: 'blog/wax-blends.html',
-    title: 'Rapeseed, Soy and Coconut Wax Blends Tested | Harbour Lights',
+    title: 'Five Candle Wax Blends, Tested | Harbour Lights',
     desc: 'We poured the same scent in five wax blends and compared scent throw, frosting and burn time over a month.',
     h1: 'Choosing a candle wax',
     body: p(
@@ -409,7 +413,7 @@ export const pages = [
   },
   {
     path: 'blog/soy-vs-paraffin.html',
-    title: 'Soy vs Paraffin Candles: What Actually Differs | Harbour Lights',
+    title: 'Soy vs Paraffin Candles Compared | Harbour Lights',
     desc: 'Soy and paraffin compared honestly: soot, scent throw, price and where each wax comes from.',
     h1: 'Choosing a candle wax',
     body: p(
@@ -444,7 +448,7 @@ export const pages = [
   // canonical points at a URL that answers 404
   {
     path: 'blog/old-guide.html',
-    title: 'The First Burn: Why the First Two Hours Matter | Harbour Lights',
+    title: 'Why the First Candle Burn Matters | Harbour Lights',
     desc: 'The first burn sets the melt pool for the life of the candle. How long to leave it lit, by jar size.',
     h1: 'The first burn',
     canonical: 'blog/first-burn-guide.html',
@@ -459,7 +463,7 @@ export const pages = [
   // canonical points at a noindex page
   {
     path: 'blog/winter-guide.html',
-    title: 'Winter Candle Guide: Cold Rooms and Draughts | Harbour Lights',
+    title: 'Winter Candle Guide: Cold Rooms | Harbour Lights',
     desc: 'Cold rooms slow a melt pool and draughts make flames lean. How to burn candles well in winter.',
     h1: 'Winter candle guide',
     canonical: 'products/archive-sale.html',
@@ -536,7 +540,7 @@ export const pages = [
   // image problems: no alt, generic alt, no dimensions, lazy first image, oversized file
   {
     path: 'blog/image-problems.html',
-    title: 'Inside the Harbour Lights Studio, in Pictures | Harbour Lights',
+    title: 'Inside the Candle Studio, in Pictures | Harbour Lights',
     desc: 'A photo walk through the studio: the melting pots, the pouring bench, the curing shelves and the packing table.',
     h1: 'Inside the studio, in pictures',
     body:
@@ -566,7 +570,7 @@ export const pages = [
   // mixed content
   {
     path: 'blog/mixed-content.html',
-    title: 'How We Photograph Candles in Natural Light | Harbour Lights',
+    title: 'How We Photograph Candles | Harbour Lights',
     desc: 'Our product photos are lit by one north-facing window and a white card. The setup, the camera settings and the edit.',
     h1: 'Photographing candles',
     body:
@@ -584,15 +588,15 @@ export const pages = [
   // link problems
   {
     path: 'blog/link-problems.html',
-    title: 'Candle Safety: Rules and Where to Read More | Harbour Lights',
+    title: 'Candle Safety Rules and Links | Harbour Lights',
     desc: 'The candle safety rules we print on every label, with links to the fire service guidance behind them.',
     h1: 'Candle safety links',
     body:
       p(
         'Every Harbour Lights label carries the same safety rules, and they come from fire service guidance. Never leave a burning candle unattended. Keep it away from curtains, shelves and anything that can catch. Keep children and pets away from the flame.',
         `Read our full safety notes <a href="${href('blog/choosing-a-wick.html')}">click here</a>, and for the first burn ${a('blog/old-guide.html', 'read more')}.`,
-        `For wick care see ${a('blog/choosing-a-wick.html', 'the wick guide', ' rel="nofollow"')}. Back to the ${`<a href="${ROOT}blog">journal</a>`}.`,
-        `Share this page: <a href="${href('index.html')}" class="icon-home"><svg width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="7"/></svg></a>. The fire service guidance is on <a href="htps//www.gov.uk/fire-safety">the fire safety page</a>.`,
+        `For everyday care see ${a('blog/care-tips.html', 'our ten care tips', ' rel="nofollow"')}. Back to the ${`<a href="${ROOT}blog">journal</a>`}.`,
+        `Share this page: <a href="${href('index.html')}" class="icon-home"><svg width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="7"/></svg></a>. The fire service guidance is on <a href="htps//www.gov.uk/fire-safety">the fire safety page</a>, and the national campaign is at <a href="https://www gov.uk/firekills">Fire Kills</a>.`,
         'A candle should stand on a heatproof surface with at least ten centimetres between it and the next candle. Burn it for no more than four hours at a time, and stop when there is a centimetre of wax left in the bottom: below that, the glass can get hot enough to crack.',
         'Put a candle out with a snuffer or by dipping the wick into the pool and lifting it out again. Blowing it out works but scatters hot wax and smoke. Never use water; it makes the wax spit.',
       ),
@@ -643,7 +647,7 @@ export const pages = [
   {
     path: 'blog/moved.html',
     title: 'Wick Guide Has Moved | Harbour Lights',
-    desc: 'This guide has moved to a new address.',
+    desc: 'Our guide to choosing a candle wick has moved to a new address in the candle care journal.',
     h1: 'This page has moved',
     thin: true,
     head: `<meta http-equiv="refresh" content="0; url=${abs('blog/choosing-a-wick.html')}">`,
@@ -689,9 +693,9 @@ document.getElementById('calculator').innerHTML = [
   // title identical to the H1
   {
     path: 'blog/title-same-as-h1.html',
-    title: 'Candle Making Workshop',
+    title: 'Candle Making Workshops in Bristol',
     desc: 'A three-hour candle making workshop in the Bristol studio: pour two jars and a tin, and take them home.',
-    h1: 'Candle Making Workshop',
+    h1: 'Candle Making Workshops in Bristol',
     body: p(
       'Once a month we run a three-hour workshop in the studio for up to six people. You will choose a wick, blend a fragrance from twelve oils, pour two jar candles and a travel tin, and take them home in a box at the end of the afternoon.',
       'No experience is needed. We cover wax temperatures, fragrance loads, wick sizes and the safety rules, and you will see why a candle needs two weeks to cure before it smells of anything. Tea, coffee and cake are included.',
@@ -703,7 +707,7 @@ document.getElementById('calculator').innerHTML = [
   // ------------------------------------------------------------ about
   {
     path: 'about/index.html',
-    title: 'About Harbour Lights, a Bristol Candle Studio | Harbour Lights',
+    title: 'About Our Bristol Candle Studio | Harbour Lights',
     desc: 'Harbour Lights is a two-person candle studio above a boatyard in Bristol, pouring small batches since 2019.',
     h1: 'About the studio',
     control: true,
@@ -735,7 +739,7 @@ document.getElementById('calculator').innerHTML = [
   // viewport blocks zoom
   {
     path: 'about/history.html',
-    title: 'Our History: From Kitchen Table to Harbour Studio | Harbour Lights',
+    title: 'Our History, Kitchen Table to Studio | Harbour Lights',
     desc: 'How Harbour Lights went from a camping stove in a Totterdown kitchen to a studio above a Bristol boatyard.',
     h1: 'Our history',
     viewport: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no',
@@ -750,7 +754,7 @@ document.getElementById('calculator').innerHTML = [
   // ------------------------------------------------------------ contact
   {
     path: 'contact/index.html',
-    title: 'Contact and Visit the Harbour Lights Studio | Harbour Lights',
+    title: 'Contact and Visit the Studio | Harbour Lights',
     desc: 'Find the studio on the Bristol harbourside, see opening hours, or call or email the team.',
     h1: 'Visit or contact us',
     body: p(
@@ -758,7 +762,7 @@ document.getElementById('calculator').innerHTML = [
       'Harbour Lights Candle Co., Unit 4, Wapping Wharf Boatyard, Bristol BS1 6WW. Telephone 0117 496 0123.',
       'Email reaches us fastest. We answer within one working day, usually sooner, and we are happy to help with wick problems, gift orders, wholesale enquiries and workshop bookings.',
       'Parking is limited on the harbourside. The nearest car park is a five minute walk away, and the ferry stops at the quay outside the boatyard every twenty minutes in summer and every forty in winter.',
-      'Wholesale accounts are open to independent shops in the UK. Send us the name of your shop and a link to your website, and we will post a set of samples.',
+      `Wholesale accounts are open to independent shops in the UK. Send us the name of your shop and a link to your website, and we will post a set of samples. Existing stockists can see the ${a('wholesale/price-list.html', 'wholesale price list')}.`,
     ),
   },
 
@@ -890,6 +894,20 @@ document.getElementById('calculator').innerHTML = [
     ),
   },
 
+  // ------------------------------------------------------------ robots.txt blocks it, sitemap lists it
+  {
+    path: 'wholesale/price-list.html',
+    title: 'Wholesale Price List for Stockists | Harbour Lights',
+    desc: 'Trade prices, minimum order quantities and delivery terms for shops that stock Harbour Lights candles.',
+    h1: 'Wholesale price list',
+    body: p(
+      'This price list is for shops that already stock Harbour Lights. Trade prices are half the retail price before VAT, with a minimum first order of one hundred and fifty pounds and repeat orders from seventy-five pounds.',
+      'Jar candles are packed in cases of six of one scent, tins in cases of twelve, and tea lights in cases of ten packs. Mixed cases are possible for a first order so you can see which scents sell in your shop before you commit.',
+      'Orders ship within five working days by pallet or courier depending on size. Delivery is free over three hundred pounds; below that we charge cost. Payment terms are thirty days from invoice for accounts that have traded with us for six months, and payment with order before that.',
+      'Display stands, testers and printed scent cards are free with any order over two hundred pounds. Ask about seasonal collections in August, because the autumn and winter runs sell out to stockists before they reach the website.',
+    ),
+  },
+
   // ------------------------------------------------------------ orphan: in the sitemap, linked from nowhere
   {
     path: 'products/hidden-reserve.html',
@@ -929,7 +947,7 @@ export const issues = [
   { id: 'TS-04', area: 'Titles', pages: ['products/pillar-candles.html'], planted: 'Two <title> elements with different text.', expect: 'Multiple title tags.', check: 'multiple-title-tags' },
   { id: 'TS-05', area: 'Titles', pages: ['blog/title-same-as-h1.html'], planted: 'The title and the H1 are the same string, with no brand or qualifier.', expect: 'Title identical to H1.', check: 'title-equals-h1' },
   { id: 'TS-06', area: 'Meta descriptions', pages: ['products/storm-lantern.html', 'products/fog-bell.html'], planted: 'Two products share one boilerplate meta description.', expect: 'Duplicate meta description on both URLs.', check: 'duplicate-meta-description' },
-  { id: 'TS-07', area: 'Meta descriptions', pages: ['products/lighthouse-keeper.html'], planted: 'No meta description.', expect: 'Missing meta description.', check: 'meta-description' },
+  { id: 'TS-07', area: 'Meta descriptions', pages: ['products/lighthouse-keeper.html'], planted: 'No meta description.', expect: 'Missing meta description.', check: 'meta-description', alsoExpected: ['social-meta (og:description is empty too)'] },
   { id: 'TS-08', area: 'Headings', pages: ['products/gift-box.html'], planted: 'No H1; the product name is an H2.', expect: 'Missing H1.', check: 'heading-h1' },
   { id: 'TS-09', area: 'Headings', pages: ['blog/two-headlines.html'], planted: 'Two H1 elements.', expect: 'More than one H1.', check: 'heading-h1' },
   { id: 'TS-10', area: 'Headings', pages: ['blog/wax-blends.html', 'blog/soy-vs-paraffin.html'], planted: 'Two different articles share the H1 "Choosing a candle wax".', expect: 'Duplicate H1 on both URLs.', check: 'duplicate-h1' },
@@ -941,9 +959,9 @@ export const issues = [
   { id: 'TS-16', area: 'Canonicals', pages: ['blog/care-tips.html'], planted: 'Canonical is .../seo-test-site/blog with no trailing slash, which GitHub Pages answers with a 301 to /blog/.', expect: 'Canonical points at a redirect.', check: 'canonical-to-redirect' },
   { id: 'TS-17', area: 'Canonicals', pages: ['blog/http-canonical.html'], planted: 'Canonical uses http:// on an https site.', expect: 'Insecure (http) canonical.', check: 'insecure-canonical' },
   { id: 'TS-18', area: 'Canonicals', pages: ['products/tea-lights.html'], planted: 'Two canonical tags pointing to different URLs.', expect: 'Multiple canonical tags.', check: 'multiple-canonical-tags' },
-  { id: 'TS-19', area: 'Broken resources', pages: ['blog/broken-links.html'], planted: 'Link to products/discontinued-tins.html, which does not exist.', expect: 'Broken internal link (404).', check: 'broken-internal-link' },
+  { id: 'TS-19', area: 'Broken resources', pages: ['blog/broken-links.html', 'products/discontinued-tins.html'], planted: 'Link to products/discontinued-tins.html, which does not exist.', expect: 'Broken internal link: the target answers 404.', check: 'status-code-404' },
   { id: 'TS-20', area: 'Broken resources', pages: ['blog/broken-links.html'], planted: 'Image img/supplier-map.png does not exist.', expect: 'Broken image (404).', check: 'broken-image' },
-  { id: 'TS-21', area: 'Broken resources', pages: ['blog/broken-links.html'], planted: 'Stylesheet css/old-theme.css does not exist.', expect: 'Broken stylesheet (404).', check: 'broken-script-or-stylesheet' },
+  { id: 'TS-21', area: 'Broken resources', pages: ['blog/broken-links.html'], planted: 'Stylesheet css/old-theme.css does not exist.', expect: 'Broken stylesheet (404). Crawlers that do not render or fetch CSS will not see it.', check: 'broken-script-or-stylesheet' },
   { id: 'TS-22', area: 'Broken resources', pages: ['blog/broken-links.html'], planted: 'External link to https://crawlcove.com/seo-test-site-supplier-directory, which answers 404.', expect: 'Broken external link.', check: 'broken-external-link' },
   { id: 'TS-23', area: 'Images', pages: ['blog/image-problems.html'], planted: 'img/melting-pots.png has no alt attribute.', expect: 'Image missing alt text.', check: 'image-alt' },
   { id: 'TS-24', area: 'Images', pages: ['blog/image-problems.html'], planted: 'img/curing-shelves.png has alt="image".', expect: 'Generic, meaningless alt text.', check: 'image-alt-generic' },
@@ -952,21 +970,23 @@ export const issues = [
   { id: 'TS-27', area: 'Images', pages: ['blog/image-problems.html'], planted: 'img/harbour-panorama.png is an uncompressed PNG over 500 KB shown at 900x300.', expect: 'Oversized image file.', check: 'image-oversized' },
   { id: 'TS-28', area: 'Security', pages: ['blog/mixed-content.html'], planted: 'An image loaded over http:// on an https page.', expect: 'Mixed content.', check: 'mixed-content' },
   { id: 'TS-29', area: 'Links', pages: ['blog/link-problems.html'], planted: 'Anchor text "click here" and "read more".', expect: 'Non-descriptive anchor text.', check: 'non-descriptive-anchor-text' },
-  { id: 'TS-30', area: 'Links', pages: ['blog/link-problems.html'], planted: 'rel="nofollow" on a link to our own wick guide.', expect: 'Nofollowed internal link.', check: 'nofollow-internal-link' },
+  { id: 'TS-30', area: 'Links', pages: ['blog/link-problems.html'], planted: 'rel="nofollow" on the only link from this page to blog/care-tips.html.', expect: 'Nofollowed internal link.', check: 'nofollow-internal-link' },
   { id: 'TS-31', area: 'Links', pages: ['blog/link-problems.html'], planted: 'An icon-only link (an svg with aria-hidden) with no text or label.', expect: 'Link with no accessible name.', check: 'link-no-name' },
-  { id: 'TS-32', area: 'Links', pages: ['blog/link-problems.html'], planted: 'href="htps//www.gov.uk/fire-safety" (misspelt scheme, missing colon).', expect: 'Malformed link.', check: 'malformed-links' },
+  { id: 'TS-32', area: 'Links', pages: ['blog/link-problems.html'], planted: 'href="https://www gov.uk/firekills" (a space in the host name, so it is not a URL at all).', expect: 'Malformed link.', check: 'malformed-links' },
+  { id: 'TS-53', area: 'Links', pages: ['blog/link-problems.html'], planted: 'href="htps//www.gov.uk/fire-safety": the misspelt scheme makes it a RELATIVE link, so it resolves to blog/htps//www.gov.uk/fire-safety on this site.', expect: 'Broken link: that URL answers 404.', check: 'status-code-404' },
   { id: 'TS-33', area: 'Links', pages: ['blog/link-problems.html'], planted: 'Internal link to /seo-test-site/blog without the trailing slash, which 301s.', expect: 'Internal link to a redirect.', check: 'internal-link-to-redirect' },
   { id: 'TS-34', area: 'Site structure', pages: ['products/hidden-reserve.html'], planted: 'Listed in sitemap.xml, linked from no page.', expect: 'Orphan page.', check: 'orphan-page' },
   { id: 'TS-35', area: 'Site structure', pages: ['products/new-arrival.html'], planted: 'Linked from the shop but missing from sitemap.xml.', expect: 'Indexable page not in the sitemap.', check: 'page-missing-from-sitemap' },
   { id: 'TS-36', area: 'Site structure', pages: ['products/sold-out.html'], planted: 'sitemap.xml lists a URL that answers 404.', expect: 'Sitemap lists a broken URL.', check: 'sitemap-non-indexable-url' },
+  { id: 'TS-54', area: 'Site structure', pages: ['wholesale/price-list.html'], planted: 'robots.txt (at the host root, crawlcove.github.io/robots.txt) disallows /seo-test-site/wholesale/, and sitemap.xml lists this page.', expect: 'Sitemap lists a URL robots.txt blocks.', check: 'sitemap-non-indexable-url' },
   { id: 'TS-37', area: 'Site structure', pages: ['archive/2025/autumn/week-40/maple-and-smoke.html'], planted: 'Five clicks from the home page (home, archive, 2025, autumn, week 40, page).', expect: 'Excessive crawl depth.', check: 'excessive-crawl-depth' },
   { id: 'TS-38', area: 'Site structure', pages: ['archive/2025/autumn/week-40/maple-and-smoke.html'], planted: 'No links out of the page at all, no navigation either.', expect: 'Dead-end page.', check: 'dead-end-page' },
-  { id: 'TS-39', area: 'Site structure', pages: ['shop/index.html'], planted: 'Six sort and filter links create query-string variants of the shop page (each canonicalises back to /shop/).', expect: 'Parameter URLs (low).', check: 'parameter-url-explosion' },
+  { id: 'TS-39', area: 'Site structure', pages: ['shop/index.html'], planted: 'Sort links and a colour by size filter grid create 26 query-string variants of the shop page (each canonicalises back to /shop/).', expect: 'One path explodes into 25 or more parameter URLs.', check: 'parameter-url-explosion' },
   { id: 'TS-40', area: 'URLs', pages: ['products/Gift_Set_LARGE.html'], planted: 'Capital letters and underscores in the URL.', expect: 'Inconsistent URL format.', check: 'url-consistency' },
   { id: 'TS-41', area: 'Content', pages: ['blog/thin-note.html'], planted: 'About 40 words of body copy.', expect: 'Thin content.', check: 'thin-content' },
   { id: 'TS-42', area: 'Content', pages: ['blog/rainy-day-candles.html', 'blog/rainy-day-candles-2.html'], planted: 'Two articles whose body differs only in the first sentence.', expect: 'Near-duplicate content on both URLs.', check: 'near-duplicate-content' },
-  { id: 'TS-43', area: 'Content', pages: ['blog/js-only.html'], planted: 'All body copy is written into the page by JavaScript; the HTML has none.', expect: 'Content depends on JavaScript (needs a rendering crawl to see it).', check: 'content-depends-on-js' },
-  { id: 'TS-44', area: 'Redirects', pages: ['blog/moved.html'], planted: '<meta http-equiv="refresh" content="0; url=..."> to the wick guide.', expect: 'Meta refresh redirect.', check: null },
+  { id: 'TS-43', area: 'Content', pages: ['blog/js-only.html'], planted: 'All body copy is written into the page by JavaScript; the HTML has none.', expect: 'Content depends on JavaScript (needs a rendering crawl to see it).', check: 'content-depends-on-js', alsoExpected: ['thin-content (a crawler that does not render sees an almost empty page)'] },
+  { id: 'TS-44', area: 'Redirects', pages: ['blog/moved.html'], planted: '<meta http-equiv="refresh" content="0; url=..."> to the wick guide.', expect: 'Meta refresh redirect.', check: null, alsoExpected: ['thin-content (the holding page is a single line)'] },
   { id: 'TS-45', area: 'Mobile', pages: ['about/team.html'], planted: 'No viewport meta tag.', expect: 'Missing viewport.', check: 'viewport-missing' },
   { id: 'TS-46', area: 'Mobile', pages: ['about/history.html'], planted: 'Viewport sets maximum-scale=1, user-scalable=no.', expect: 'Viewport blocks zoom.', check: 'viewport-blocks-zoom' },
   { id: 'TS-47', area: 'Language', pages: ['about/team.html'], planted: '<html> has no lang attribute.', expect: 'Missing html lang.', check: 'html-lang' },

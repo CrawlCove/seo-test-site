@@ -1,0 +1,28 @@
+name: Build and publish
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Build (fails if a page is thin or an issue names an unknown page)
+        run: node build/build.mjs
+      - name: Generated files are committed
+        run: git diff --exit-code -- docs ISSUES.md issues.json
+      - name: Publish docs/ to gh-pages
+        if: github.event_name == 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git subtree split --prefix docs -b gh-pages-new
+          git push -f origin gh-pages-new:gh-pages

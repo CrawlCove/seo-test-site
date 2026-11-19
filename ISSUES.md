@@ -4,7 +4,7 @@ Site: https://crawlcove.github.io/seo-test-site/
 
 This file is generated from `build/pages.mjs` together with the pages, so it always matches what is deployed. The same list is in [`issues.json`](issues.json) for scripts that score a crawler automatically.
 
-**52 planted problems** across 52 pages and 1 sitemap-only URL. Each row says what is wrong, what a crawler should report, and which [Crawl Cove](https://crawlcove.com/?utm_source=github&utm_medium=seo-test-site) check reports it.
+**54 planted problems** across 53 pages and 1 sitemap-only URL. Each row says what is wrong, what a crawler should report, and which [Crawl Cove](https://crawlcove.com/?utm_source=github&utm_medium=seo-test-site) check reports it.
 
 ## How to score a crawler
 
@@ -29,7 +29,7 @@ Some pages trigger a second, expected finding as a side effect (for example the 
 | ID | URL | What is planted | A crawler should report | Crawl Cove check |
 |---|---|---|---|---|
 | TS-06 | [products/storm-lantern.html](https://crawlcove.github.io/seo-test-site/products/storm-lantern.html)<br>[products/fog-bell.html](https://crawlcove.github.io/seo-test-site/products/fog-bell.html) | Two products share one boilerplate meta description. | Duplicate meta description on both URLs. | `duplicate-meta-description` |
-| TS-07 | [products/lighthouse-keeper.html](https://crawlcove.github.io/seo-test-site/products/lighthouse-keeper.html) | No meta description. | Missing meta description. | `meta-description` |
+| TS-07 | [products/lighthouse-keeper.html](https://crawlcove.github.io/seo-test-site/products/lighthouse-keeper.html) | No meta description. | Missing meta description. Also expected: `social-meta` (og:description is empty too). | `meta-description` |
 
 ## Headings
 
@@ -61,9 +61,9 @@ Some pages trigger a second, expected finding as a side effect (for example the 
 
 | ID | URL | What is planted | A crawler should report | Crawl Cove check |
 |---|---|---|---|---|
-| TS-19 | [blog/broken-links.html](https://crawlcove.github.io/seo-test-site/blog/broken-links.html) | Link to products/discontinued-tins.html, which does not exist. | Broken internal link (404). | `broken-internal-link` |
+| TS-19 | [blog/broken-links.html](https://crawlcove.github.io/seo-test-site/blog/broken-links.html)<br>[products/discontinued-tins.html](https://crawlcove.github.io/seo-test-site/products/discontinued-tins.html) | Link to products/discontinued-tins.html, which does not exist. | Broken internal link: the target answers 404. | `status-code-404` |
 | TS-20 | [blog/broken-links.html](https://crawlcove.github.io/seo-test-site/blog/broken-links.html) | Image img/supplier-map.png does not exist. | Broken image (404). | `broken-image` |
-| TS-21 | [blog/broken-links.html](https://crawlcove.github.io/seo-test-site/blog/broken-links.html) | Stylesheet css/old-theme.css does not exist. | Broken stylesheet (404). | `broken-script-or-stylesheet` |
+| TS-21 | [blog/broken-links.html](https://crawlcove.github.io/seo-test-site/blog/broken-links.html) | Stylesheet css/old-theme.css does not exist. | Broken stylesheet (404). Crawlers that do not render or fetch CSS will not see it. | `broken-script-or-stylesheet` |
 | TS-22 | [blog/broken-links.html](https://crawlcove.github.io/seo-test-site/blog/broken-links.html) | External link to https://crawlcove.com/seo-test-site-supplier-directory, which answers 404. | Broken external link. | `broken-external-link` |
 
 ## Images
@@ -87,9 +87,10 @@ Some pages trigger a second, expected finding as a side effect (for example the 
 | ID | URL | What is planted | A crawler should report | Crawl Cove check |
 |---|---|---|---|---|
 | TS-29 | [blog/link-problems.html](https://crawlcove.github.io/seo-test-site/blog/link-problems.html) | Anchor text &quot;click here&quot; and &quot;read more&quot;. | Non-descriptive anchor text. | `non-descriptive-anchor-text` |
-| TS-30 | [blog/link-problems.html](https://crawlcove.github.io/seo-test-site/blog/link-problems.html) | rel=&quot;nofollow&quot; on a link to our own wick guide. | Nofollowed internal link. | `nofollow-internal-link` |
+| TS-30 | [blog/link-problems.html](https://crawlcove.github.io/seo-test-site/blog/link-problems.html) | rel=&quot;nofollow&quot; on the only link from this page to blog/care-tips.html. | Nofollowed internal link. | `nofollow-internal-link` |
 | TS-31 | [blog/link-problems.html](https://crawlcove.github.io/seo-test-site/blog/link-problems.html) | An icon-only link (an svg with aria-hidden) with no text or label. | Link with no accessible name. | `link-no-name` |
-| TS-32 | [blog/link-problems.html](https://crawlcove.github.io/seo-test-site/blog/link-problems.html) | href=&quot;htps//www.gov.uk/fire-safety&quot; (misspelt scheme, missing colon). | Malformed link. | `malformed-links` |
+| TS-32 | [blog/link-problems.html](https://crawlcove.github.io/seo-test-site/blog/link-problems.html) | href=&quot;https://www gov.uk/firekills&quot; (a space in the host name, so it is not a URL at all). | Malformed link. | `malformed-links` |
+| TS-53 | [blog/link-problems.html](https://crawlcove.github.io/seo-test-site/blog/link-problems.html) | href=&quot;htps//www.gov.uk/fire-safety&quot;: the misspelt scheme makes it a RELATIVE link, so it resolves to blog/htps//www.gov.uk/fire-safety on this site. | Broken link: that URL answers 404. | `status-code-404` |
 | TS-33 | [blog/link-problems.html](https://crawlcove.github.io/seo-test-site/blog/link-problems.html) | Internal link to /seo-test-site/blog without the trailing slash, which 301s. | Internal link to a redirect. | `internal-link-to-redirect` |
 
 ## Site structure
@@ -99,9 +100,10 @@ Some pages trigger a second, expected finding as a side effect (for example the 
 | TS-34 | [products/hidden-reserve.html](https://crawlcove.github.io/seo-test-site/products/hidden-reserve.html) | Listed in sitemap.xml, linked from no page. | Orphan page. | `orphan-page` |
 | TS-35 | [products/new-arrival.html](https://crawlcove.github.io/seo-test-site/products/new-arrival.html) | Linked from the shop but missing from sitemap.xml. | Indexable page not in the sitemap. | `page-missing-from-sitemap` |
 | TS-36 | [products/sold-out.html](https://crawlcove.github.io/seo-test-site/products/sold-out.html) | sitemap.xml lists a URL that answers 404. | Sitemap lists a broken URL. | `sitemap-non-indexable-url` |
+| TS-54 | [wholesale/price-list.html](https://crawlcove.github.io/seo-test-site/wholesale/price-list.html) | robots.txt (at the host root, crawlcove.github.io/robots.txt) disallows /seo-test-site/wholesale/, and sitemap.xml lists this page. | Sitemap lists a URL robots.txt blocks. | `sitemap-non-indexable-url` |
 | TS-37 | [archive/2025/autumn/week-40/maple-and-smoke.html](https://crawlcove.github.io/seo-test-site/archive/2025/autumn/week-40/maple-and-smoke.html) | Five clicks from the home page (home, archive, 2025, autumn, week 40, page). | Excessive crawl depth. | `excessive-crawl-depth` |
 | TS-38 | [archive/2025/autumn/week-40/maple-and-smoke.html](https://crawlcove.github.io/seo-test-site/archive/2025/autumn/week-40/maple-and-smoke.html) | No links out of the page at all, no navigation either. | Dead-end page. | `dead-end-page` |
-| TS-39 | [shop/](https://crawlcove.github.io/seo-test-site/shop/) | Six sort and filter links create query-string variants of the shop page (each canonicalises back to /shop/). | Parameter URLs (low). | `parameter-url-explosion` |
+| TS-39 | [shop/](https://crawlcove.github.io/seo-test-site/shop/) | Sort links and a colour by size filter grid create 26 query-string variants of the shop page (each canonicalises back to /shop/). | One path explodes into 25 or more parameter URLs. | `parameter-url-explosion` |
 
 ## URLs
 
@@ -115,13 +117,13 @@ Some pages trigger a second, expected finding as a side effect (for example the 
 |---|---|---|---|---|
 | TS-41 | [blog/thin-note.html](https://crawlcove.github.io/seo-test-site/blog/thin-note.html) | About 40 words of body copy. | Thin content. | `thin-content` |
 | TS-42 | [blog/rainy-day-candles.html](https://crawlcove.github.io/seo-test-site/blog/rainy-day-candles.html)<br>[blog/rainy-day-candles-2.html](https://crawlcove.github.io/seo-test-site/blog/rainy-day-candles-2.html) | Two articles whose body differs only in the first sentence. | Near-duplicate content on both URLs. | `near-duplicate-content` |
-| TS-43 | [blog/js-only.html](https://crawlcove.github.io/seo-test-site/blog/js-only.html) | All body copy is written into the page by JavaScript; the HTML has none. | Content depends on JavaScript (needs a rendering crawl to see it). | `content-depends-on-js` |
+| TS-43 | [blog/js-only.html](https://crawlcove.github.io/seo-test-site/blog/js-only.html) | All body copy is written into the page by JavaScript; the HTML has none. | Content depends on JavaScript (needs a rendering crawl to see it). Also expected: `thin-content` (a crawler that does not render sees an almost empty page). | `content-depends-on-js` |
 
 ## Redirects
 
 | ID | URL | What is planted | A crawler should report | Crawl Cove check |
 |---|---|---|---|---|
-| TS-44 | [blog/moved.html](https://crawlcove.github.io/seo-test-site/blog/moved.html) | &lt;meta http-equiv=&quot;refresh&quot; content=&quot;0; url=...&quot;&gt; to the wick guide. | Meta refresh redirect. | none yet |
+| TS-44 | [blog/moved.html](https://crawlcove.github.io/seo-test-site/blog/moved.html) | &lt;meta http-equiv=&quot;refresh&quot; content=&quot;0; url=...&quot;&gt; to the wick guide. | Meta refresh redirect. Also expected: `thin-content` (the holding page is a single line). | none yet |
 
 ## Mobile
 
@@ -177,7 +179,7 @@ The site is static and hosted on GitHub Pages, so some problems cannot be plante
 
 - **Server redirects, redirect chains and loops.** Pages has no redirect rules. The only real 301 is its trailing-slash redirect (`/blog` to `/blog/`), used in TS-16 and TS-33.
 - **5xx errors, slow responses, 429 rate limits.** Every response comes from GitHub's CDN.
-- **robots.txt rules.** robots.txt must sit at the host root (crawlcove.github.io/robots.txt), outside this project's path, so none is planted, and the sitemap is not declared in one.
+- **Most robots.txt problems.** robots.txt is only read at the host root, so it lives in a separate repo, [CrawlCove/crawlcove.github.io](https://github.com/CrawlCove/crawlcove.github.io). It declares the sitemap and carries one deliberate Disallow (TS-54); a malformed robots.txt would break every other test, so none is planted.
 - **Soft 404s.** Pages returns a real 404 for any unknown URL.
 
 Suggestions for problems Pages *can* host are welcome as issues or pull requests.
