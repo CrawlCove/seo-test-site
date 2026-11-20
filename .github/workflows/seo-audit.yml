@@ -1,0 +1,27 @@
+# The live example for CrawlCove/seo-audit-action: audit this deliberately broken
+# site after every publish, and weekly. fail-on is "none" because the problems
+# are planted on purpose; on a real site you would leave the default and let a
+# regression fail the check. The job summary shows the full report.
+name: SEO audit
+on:
+  workflow_run:
+    workflows: ['Build and publish']
+    types: [completed]
+  schedule:
+    - cron: '17 6 * * 1'
+  workflow_dispatch:
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: CrawlCove/seo-audit-action@v1
+        id: crawl
+        with:
+          url: https://crawlcove.github.io/seo-test-site/
+          fail-on: none
+      - name: Planted problems are still found
+        run: |
+          echo "broken links: ${{ steps.crawl.outputs.broken-links }}, missing titles: ${{ steps.crawl.outputs.missing-titles }}, noindex: ${{ steps.crawl.outputs.noindex }}"
+          test "${{ steps.crawl.outputs.broken-links }}" -ge 2
+          test "${{ steps.crawl.outputs.missing-titles }}" -ge 1
+          test "${{ steps.crawl.outputs.noindex }}" -ge 1
