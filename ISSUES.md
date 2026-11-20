@@ -123,7 +123,7 @@ Some pages trigger a second, expected finding as a side effect (for example the 
 
 | ID | URL | What is planted | A crawler should report | Crawl Cove check |
 |---|---|---|---|---|
-| TS-44 | [blog/moved.html](https://crawlcove.github.io/seo-test-site/blog/moved.html) | &lt;meta http-equiv=&quot;refresh&quot; content=&quot;0; url=...&quot;&gt; to the wick guide. | Meta refresh redirect. Also expected: `thin-content` (the holding page is a single line). | none yet |
+| TS-44 | [blog/moved.html](https://crawlcove.github.io/seo-test-site/blog/moved.html) | &lt;meta http-equiv=&quot;refresh&quot; content=&quot;0; url=...&quot;&gt; to the wick guide. | Meta refresh redirect. Also expected: `thin-content` (the holding page is a single line). | `meta-refresh-redirect` |
 
 ## Mobile
 

@@ -478,7 +478,7 @@
       "area": "Redirects",
       "planted": "<meta http-equiv=\"refresh\" content=\"0; url=...\"> to the wick guide.",
       "expect": "Meta refresh redirect.",
-      "check": null,
+      "check": "meta-refresh-redirect",
       "alsoExpected": [
         "thin-content (the holding page is a single line)"
       ],
