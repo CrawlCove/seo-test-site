@@ -1,3 +1,5 @@
+<a href="https://crawlcove.com/download?utm_source=github&utm_medium=readme&utm_campaign=seo-test-site"><img src="https://raw.githubusercontent.com/CrawlCove/.github/main/banners/seo-test-site.svg" width="1200" alt="seo-test-site: A deliberately broken SEO test site with 54 planted problems and the expected findings, for testing any SEO crawler." /></a>
+
 # seo-test-site
 
 A deliberately broken **SEO test site** for testing SEO crawlers and site audit tools. It is a small, realistic candle shop (Harbour Lights, fictional) with **54 planted SEO problems**, each one listed in [ISSUES.md](ISSUES.md) with the URL, what is wrong and what a crawler should report. Point any crawler at it and score what it finds.
