@@ -1,8 +1,8 @@
-<a href="https://crawlcove.com/download?utm_source=github&utm_medium=readme&utm_campaign=seo-test-site"><img src="https://raw.githubusercontent.com/CrawlCove/.github/main/banners/seo-test-site.svg" width="1200" alt="seo-test-site: A deliberately broken SEO test site with 54 planted problems and the expected findings, for testing any SEO crawler." /></a>
+<a href="https://crawlcove.com/download?utm_source=github&utm_medium=readme&utm_campaign=seo-test-site"><img src="https://raw.githubusercontent.com/CrawlCove/.github/main/banners/seo-test-site.svg" width="1200" alt="seo-test-site: A deliberately broken SEO test site with every planted problem and its expected finding listed, for testing any SEO crawler." /></a>
 
 # seo-test-site
 
-A deliberately broken **SEO test site** for testing SEO crawlers and site audit tools. It is a small, realistic candle shop (Harbour Lights, fictional) with **54 planted SEO problems**, each one listed in [ISSUES.md](ISSUES.md) with the URL, what is wrong and what a crawler should report. Point any crawler at it and score what it finds.
+A deliberately broken **SEO test site** for testing SEO crawlers and site audit tools. It is a small, realistic candle shop (Harbour Lights, fictional) with dozens of planted SEO problems, each one listed in [ISSUES.md](ISSUES.md) with the URL, what is wrong and what a crawler should report. Point any crawler at it and score what it finds.
 
 **Test URL:** https://crawlcove.github.io/seo-test-site/
 
@@ -17,18 +17,18 @@ curl -s https://raw.githubusercontent.com/CrawlCove/seo-test-site/main/issues.js
 
 ## What is planted
 
-| Area | Problems | Examples |
-|---|---|---|
-| Titles and meta descriptions | 7 | duplicate titles, missing title, 140-character title, two `<title>` tags, duplicate and missing descriptions |
-| Headings | 4 | missing H1, two H1s, the same H1 on two pages, H1 straight to H4 |
-| Indexing and canonicals | 7 | noindex page in the sitemap, canonical to a 404, to a noindex page, to a redirect, over http, two canonical tags |
-| Broken resources | 4 | internal 404 link, broken image, broken stylesheet, broken external link |
-| Images | 5 | no alt, `alt="image"`, no dimensions, lazy-loaded first image, an 800 KB PNG |
-| Links | 6 | "click here" anchors, nofollowed internal link, icon link with no name, malformed href, misspelt scheme that 404s, link to a redirect |
-| Site structure and URLs | 8 | orphan page, page missing from the sitemap, 404 in the sitemap, robots-blocked URL in the sitemap, 5 clicks deep, dead end, parameter URLs, `Gift_Set_LARGE.html` |
-| Content | 3 | thin page, near-duplicate pair, body copy written by JavaScript |
-| Mobile, language, international | 5 | missing viewport, zoom blocked, no `lang`, hreflang without a return link, `hreflang="en-UK"` |
-| Structured data, social, local, redirects, security | 5 | invalid JSON-LD, Product with no name, no Open Graph, address with no LocalBusiness, meta refresh, mixed content |
+| Area | Examples |
+|---|---|
+| Titles and meta descriptions | duplicate titles, missing title, 140-character title, two `<title>` tags, duplicate and missing descriptions |
+| Headings | missing H1, two H1s, the same H1 on two pages, H1 straight to H4 |
+| Indexing and canonicals | noindex page in the sitemap, canonical to a 404, to a noindex page, to a redirect, over http, two canonical tags |
+| Broken resources | internal 404 link, broken image, broken stylesheet, broken external link |
+| Images | no alt, `alt="image"`, no dimensions, lazy-loaded first image, an 800 KB PNG |
+| Links | "click here" anchors, nofollowed internal link, icon link with no name, malformed href, misspelt scheme that 404s, link to a redirect, an http link that takes two redirects |
+| Site structure and URLs | orphan page, page missing from the sitemap, 404 in the sitemap, robots-blocked URL in the sitemap, 5 clicks deep, dead end, parameter URLs, `Gift_Set_LARGE.html` |
+| Content | thin page, near-duplicate pair, body copy written by JavaScript |
+| Mobile, language, international | missing viewport, zoom blocked, no `lang`, hreflang without a return link, `hreflang="en-UK"` |
+| Structured data, social, local, redirects, security | invalid JSON-LD, Product with no name, no Open Graph, address with no LocalBusiness, meta refresh, mixed content |
 
 Five **control pages** carry no planted problem, so a finding on them is a false positive. The full list, with one row per problem, is in [ISSUES.md](ISSUES.md).
 

@@ -390,6 +390,16 @@
       ]
     },
     {
+      "id": "TS-55",
+      "area": "Links",
+      "planted": "A link to http://crawlcove.github.io/seo-test-site/archive: plain http and no trailing slash, so GitHub Pages answers 301 to https and then 301 again to /archive/.",
+      "expect": "Internal link over http (a two-hop redirect chain).",
+      "check": "internal-link-over-http",
+      "urls": [
+        "https://crawlcove.github.io/seo-test-site/about/history.html"
+      ]
+    },
+    {
       "id": "TS-54",
       "area": "Site structure",
       "planted": "robots.txt (at the host root, crawlcove.github.io/robots.txt) disallows /seo-test-site/wholesale/, and sitemap.xml lists this page.",

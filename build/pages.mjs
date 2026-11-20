@@ -748,6 +748,7 @@ document.getElementById('calculator').innerHTML = [
       'The next year the market was cancelled and the orders came by email instead. By spring there were too many to pour on a kitchen table, so we rented a small room above a boatyard on the harbour. The view from its window gave the business its name.',
       'In 2022 we switched every candle to a rapeseed and soy blend grown in Europe, and in 2024 we dropped plastic from our packaging entirely. In 2025 we started running workshops, which are now booked months ahead.',
       'We still pour in batches of forty, by hand, in the same room. The stove has been replaced, but the first saucepan hangs on the wall.',
+      `Every collection we have made since that first market is listed in the <a href="http://crawlcove.github.io/seo-test-site/archive">seasonal archive</a>.`,
     ),
   },
 
@@ -978,6 +979,7 @@ export const issues = [
   { id: 'TS-34', area: 'Site structure', pages: ['products/hidden-reserve.html'], planted: 'Listed in sitemap.xml, linked from no page.', expect: 'Orphan page.', check: 'orphan-page' },
   { id: 'TS-35', area: 'Site structure', pages: ['products/new-arrival.html'], planted: 'Linked from the shop but missing from sitemap.xml.', expect: 'Indexable page not in the sitemap.', check: 'page-missing-from-sitemap' },
   { id: 'TS-36', area: 'Site structure', pages: ['products/sold-out.html'], planted: 'sitemap.xml lists a URL that answers 404.', expect: 'Sitemap lists a broken URL.', check: 'sitemap-non-indexable-url' },
+  { id: 'TS-55', area: 'Links', pages: ['about/history.html'], planted: 'A link to http://crawlcove.github.io/seo-test-site/archive: plain http and no trailing slash, so GitHub Pages answers 301 to https and then 301 again to /archive/.', expect: 'Internal link over http (a two-hop redirect chain).', check: 'internal-link-over-http' },
   { id: 'TS-54', area: 'Site structure', pages: ['wholesale/price-list.html'], planted: 'robots.txt (at the host root, crawlcove.github.io/robots.txt) disallows /seo-test-site/wholesale/, and sitemap.xml lists this page.', expect: 'Sitemap lists a URL robots.txt blocks.', check: 'sitemap-non-indexable-url' },
   { id: 'TS-37', area: 'Site structure', pages: ['archive/2025/autumn/week-40/maple-and-smoke.html'], planted: 'Five clicks from the home page (home, archive, 2025, autumn, week 40, page).', expect: 'Excessive crawl depth.', check: 'excessive-crawl-depth' },
   { id: 'TS-38', area: 'Site structure', pages: ['archive/2025/autumn/week-40/maple-and-smoke.html'], planted: 'No links out of the page at all, no navigation either.', expect: 'Dead-end page.', check: 'dead-end-page' },

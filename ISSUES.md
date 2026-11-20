@@ -4,7 +4,7 @@ Site: https://crawlcove.github.io/seo-test-site/
 
 This file is generated from `build/pages.mjs` together with the pages, so it always matches what is deployed. The same list is in [`issues.json`](issues.json) for scripts that score a crawler automatically.
 
-**54 planted problems** across 53 pages and 1 sitemap-only URL. Each row says what is wrong, what a crawler should report, and which [Crawl Cove](https://crawlcove.com/?utm_source=github&utm_medium=seo-test-site) check reports it.
+**55 planted problems** across 53 pages and 1 sitemap-only URL. Each row says what is wrong, what a crawler should report, and which [Crawl Cove](https://crawlcove.com/?utm_source=github&utm_medium=seo-test-site) check reports it.
 
 ## How to score a crawler
 
@@ -92,6 +92,7 @@ Some pages trigger a second, expected finding as a side effect (for example the 
 | TS-32 | [blog/link-problems.html](https://crawlcove.github.io/seo-test-site/blog/link-problems.html) | href=&quot;https://www gov.uk/firekills&quot; (a space in the host name, so it is not a URL at all). | Malformed link. | `malformed-links` |
 | TS-53 | [blog/link-problems.html](https://crawlcove.github.io/seo-test-site/blog/link-problems.html)<br>[blog/htps//www.gov.uk/fire-safety](https://crawlcove.github.io/seo-test-site/blog/htps//www.gov.uk/fire-safety) | href=&quot;htps//www.gov.uk/fire-safety&quot;: the misspelt scheme makes it a RELATIVE link, so it resolves to blog/htps//www.gov.uk/fire-safety on this site. | Broken link: that URL answers 404. | `status-code-404` |
 | TS-33 | [blog/link-problems.html](https://crawlcove.github.io/seo-test-site/blog/link-problems.html) | Internal link to /seo-test-site/blog without the trailing slash, which 301s. | Internal link to a redirect. | `internal-link-to-redirect` |
+| TS-55 | [about/history.html](https://crawlcove.github.io/seo-test-site/about/history.html) | A link to http://crawlcove.github.io/seo-test-site/archive: plain http and no trailing slash, so GitHub Pages answers 301 to https and then 301 again to /archive/. | Internal link over http (a two-hop redirect chain). | `internal-link-over-http` |
 
 ## Site structure
 
@@ -177,7 +178,7 @@ These pages carry no planted problem. A finding on one of them is a false positi
 
 The site is static and hosted on GitHub Pages, so some problems cannot be planted here:
 
-- **Server redirects, redirect chains and loops.** Pages has no redirect rules. The only real 301 is its trailing-slash redirect (`/blog` to `/blog/`), used in TS-16 and TS-33.
+- **Server redirect rules and loops.** Pages has no redirect rules. Its only 301s are the trailing-slash redirect (`/blog` to `/blog/`, TS-16 and TS-33) and http to https; together they make one real two-hop chain (TS-55).
 - **5xx errors, slow responses, 429 rate limits.** Every response comes from GitHub's CDN.
 - **Most robots.txt problems.** robots.txt is only read at the host root, so it lives in a separate repo, [CrawlCove/crawlcove.github.io](https://github.com/CrawlCove/crawlcove.github.io). It declares the sitemap and carries one deliberate Disallow (TS-54); a malformed robots.txt would break every other test, so none is planted.
 - **Soft 404s.** Pages returns a real 404 for any unknown URL.

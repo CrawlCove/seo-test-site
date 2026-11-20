@@ -182,7 +182,7 @@ ${controls.join('\n')}
 
 The site is static and hosted on GitHub Pages, so some problems cannot be planted here:
 
-- **Server redirects, redirect chains and loops.** Pages has no redirect rules. The only real 301 is its trailing-slash redirect (\`/blog\` to \`/blog/\`), used in TS-16 and TS-33.
+- **Server redirect rules and loops.** Pages has no redirect rules. Its only 301s are the trailing-slash redirect (\`/blog\` to \`/blog/\`, TS-16 and TS-33) and http to https; together they make one real two-hop chain (TS-55).
 - **5xx errors, slow responses, 429 rate limits.** Every response comes from GitHub's CDN.
 - **Most robots.txt problems.** robots.txt is only read at the host root, so it lives in a separate repo, [CrawlCove/crawlcove.github.io](https://github.com/CrawlCove/crawlcove.github.io). It declares the sitemap and carries one deliberate Disallow (TS-54); a malformed robots.txt would break every other test, so none is planted.
 - **Soft 404s.** Pages returns a real 404 for any unknown URL.
