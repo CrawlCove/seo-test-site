@@ -143,7 +143,7 @@
       "area": "Canonicals",
       "planted": "Canonical points to blog/first-burn-guide.html, which answers 404.",
       "expect": "Canonical target is broken (4xx).",
-      "check": "canonical",
+      "check": "canonical-to-noindex",
       "alsoExpected": [
         "sitemap-non-indexable-url (the sitemap lists a page whose canonical names another URL)"
       ],

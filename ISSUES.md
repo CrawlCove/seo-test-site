@@ -51,7 +51,7 @@ Some pages trigger a second, expected finding as a side effect (for example the 
 
 | ID | URL | What is planted | A crawler should report | Crawl Cove check |
 |---|---|---|---|---|
-| TS-14 | [blog/old-guide.html](https://crawlcove.github.io/seo-test-site/blog/old-guide.html) | Canonical points to blog/first-burn-guide.html, which answers 404. | Canonical target is broken (4xx). Also expected: `sitemap-non-indexable-url` (the sitemap lists a page whose canonical names another URL). | `canonical` |
+| TS-14 | [blog/old-guide.html](https://crawlcove.github.io/seo-test-site/blog/old-guide.html) | Canonical points to blog/first-burn-guide.html, which answers 404. | Canonical target is broken (4xx). Also expected: `sitemap-non-indexable-url` (the sitemap lists a page whose canonical names another URL). | `canonical-to-noindex` |
 | TS-15 | [blog/winter-guide.html](https://crawlcove.github.io/seo-test-site/blog/winter-guide.html) | Canonical points to products/archive-sale.html, which is noindex. | Canonical points at a noindex page. Also expected: `sitemap-non-indexable-url` (the sitemap lists a page whose canonical names another URL). | `canonical-to-noindex` |
 | TS-16 | [blog/care-tips.html](https://crawlcove.github.io/seo-test-site/blog/care-tips.html) | Canonical is .../seo-test-site/blog with no trailing slash, which GitHub Pages answers with a 301 to /blog/. | Canonical points at a redirect. Also expected: `sitemap-non-indexable-url` (the sitemap lists a page whose canonical names another URL). | `canonical-to-redirect` |
 | TS-17 | [blog/http-canonical.html](https://crawlcove.github.io/seo-test-site/blog/http-canonical.html) | Canonical uses http:// on an https site. | Insecure (http) canonical. | `insecure-canonical` |
